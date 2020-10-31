@@ -14,20 +14,19 @@ class Room extends Component {
     socket.on("chat message", data => console.log('owerlo sdfasd ' + data));
     socket.on("apiCall", data => console.log('api Call ' + data));
     socket.emit('chat message', 'hello')
+    this.setState({ socket })
   }
 
   test = () => {
     this.state.socket.emit('chat message', 'hello')
-    this.state.socket.on('chat message', function(msg) {
+    this.state.socket.on('chat message', function (msg) {
       console.log('owerlo sdfasd');
-      
     });
   }
 
   pushTheButton = (id) => {
-
+    this.state.socket.emit('button_press', 'hello')
   }
-
 
 
   render() {
@@ -38,7 +37,7 @@ class Room extends Component {
             {console.log(this.props.match.params.id)}
             <button
               className="btn btn-primary"
-            // onClick={this.addEmployee}
+              onClick={this.pushTheButton}
             >Push Me</button>
           </Col>
           <Col size="md-3">
@@ -47,7 +46,7 @@ class Room extends Component {
         </Row>
         <Footer />
       </Container>
-    );
+    )
   }
 }
 
